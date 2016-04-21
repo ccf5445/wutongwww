@@ -1,0 +1,74 @@
+<!--圈子-关注-->
+<ion-view class="regard" ng-controller="circleRegardCtrl">
+
+
+    <!--<ion-nav-buttons side="left">-->
+        <!--<button class="button ion-ios-search button-clear" ng-click="openSearchModal()">-->
+        <!--</button>-->
+    <!--</ion-nav-buttons>-->
+
+    <!--<ion-nav-buttons side="right">-->
+        <!--<button class="button ion-ios-plus-outline button-clear" ng-click="openQuizModal()">-->
+        <!--</button>-->
+    <!--</ion-nav-buttons>-->
+
+
+    <ion-content class="cell-top cell-bottom regard-content">
+
+        <ion-refresher
+                pulling-text="下拉刷新"
+                on-refresh="doRefresh()">
+        </ion-refresher>
+
+        <ion-list>
+
+            <div class="not-sign" ng-if="unSign">
+                还没有登录哟~
+            </div>
+
+            <div class="no-watch" ng-if="unWatch">
+                没有关注的问题哟~
+            </div>
+
+            <div class="no-data" ng-if="noData">
+                没有数据哟~
+            </div>
+
+            <div ng-repeat="data in dataArray">
+                <div class="regard-list-cell" ng-click="openQuestionModal(data.id)">
+                    <div class="avatar">
+                        <img src="{{data.fimg}}" alt="">
+                    </div>
+                    <div class="answer-num">
+                        <i class="fa fa-comment-o" aria-hidden="true"></i>
+                        10
+                    </div>
+                    <div class="question">
+                        {{data.question}}
+                    </div>
+                    <div class="best-answer">
+                        <div class="user-info">
+                            <span class="username">{{data.hname}}</span>
+                            <span class="motto"> - 少壮不努力老大徒伤悲</span>
+                            <div class="avatar">
+                                <img src="{{data.himg}}" alt="">
+                            </div>
+                        </div>
+                        <div class="answer-text">
+                            {{data.content}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ion-list>
+
+
+
+        <ion-infinite-scroll
+                ng-if="moreDataCanBeLoaded()"
+                icon="ion-loading-c"
+                on-infinite="loadMoreData()">
+        </ion-infinite-scroll>
+
+    </ion-content>
+</ion-view>

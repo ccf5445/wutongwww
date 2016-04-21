@@ -1,0 +1,68 @@
+<!--圈子-最新-->
+<ion-view class="new" ng-controller="circleNewCtrl">
+
+
+    <!--<ion-nav-buttons side="left">-->
+        <!--<button class="button ion-ios-search button-clear" ng-click="openSearchModal()">-->
+        <!--</button>-->
+    <!--</ion-nav-buttons>-->
+
+    <!--<ion-nav-buttons side="right">-->
+        <!--<button class="button ion-ios-plus-outline button-clear" ng-click="openQuizModal()">-->
+        <!--</button>-->
+    <!--</ion-nav-buttons>-->
+
+
+    <ion-content class="cell-top cell-bottom new-content">
+
+        <ion-refresher
+                pulling-text="下拉刷新"
+                on-refresh="doRefresh()">
+        </ion-refresher>
+
+        <ion-list>
+
+            <div class="no-data" ng-if="noData">
+                没有数据哟~
+            </div>
+
+            <div ng-repeat="data in dataArray">
+                <div class="new-list-cell" ng-click="openQuestionModal(data.id)">
+                   <div class="avatar">
+                       <img src="{{data.fimg}}" alt="">
+                   </div>
+                    <div class="answer-num">
+                        <i class="fa fa-comment-o" aria-hidden="true"></i>
+                        10
+                    </div>
+                    <div class="question">
+                        {{data.question}}
+                    </div>
+                    <div class="best-answer">
+                        <div class="user-info">
+                            <span class="username">{{data.hname}}</span>
+                            <span class="motto">  {{data.hsign}}</span>
+                            <div class="avatar">
+                                <img src="{{data.himg}}" alt="">
+                            </div>
+                        </div>
+                        <div class="answer-text">
+                            {{data.content}}
+                        </div>
+                    </div>
+                    <div class="time">
+                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+                        {{data.ago}}
+                    </div>
+                </div>
+            </div>
+        </ion-list>
+
+        <ion-infinite-scroll
+                ng-if="moreDataCanBeLoaded()"
+                icon="ion-loading-c"
+                on-infinite="loadMoreData()">
+        </ion-infinite-scroll>
+
+    </ion-content>
+</ion-view>

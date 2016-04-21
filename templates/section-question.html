@@ -1,0 +1,78 @@
+<ion-modal-view ng-controller="sectionQuestionCtrl" class="section-question">
+    <ion-header-bar>
+        <button class="button button-clear ion-android-close" ng-click="closeQuestionModal()"></button>
+        <h1 class="title">{{answerNum}}个回答</h1>
+        <button class="button button-clear ion-ios-more" ></button>
+    </ion-header-bar>
+
+    <ion-content class="content">
+
+        <div class="question">
+
+            <div class="title">
+                <div class="img">
+                    <img src="{{dataArray.resultQuestion.head_img}}" alt="">
+                </div>
+                <div class="text">{{dataArray.resultQuestion.question}}</div>
+            </div>
+
+            <div class="detail" ng-click="showMoreDetail()" ng-if="!detailMore">
+                <div class="text">
+                    {{dataArray.resultQuestion.describe}}
+                </div>
+                <i class="more ion-ios-arrow-down"></i>
+            </div>
+
+            <div class="detail-more" ng-if="detailMore" ng-click="showMoreDetail()">
+                {{dataArray.resultQuestion.describe}}
+            </div>
+
+            <div class="topics">
+                <span ng-repeat="topic in dataArray.resultArt" class="topic">{{topic.art_name}}</span>
+            </div>
+
+            <div class="info">
+                <button>关注</button>
+                <div class="info-detail">
+                    {{dataArray.resultAttention}}关注   {{answerNum}}回答
+                </div>
+            </div>
+
+            <div class="to-answer">
+                <div class="invite-answer">邀请回答</div>
+                <div class="my-answer">添加答案</div>
+            </div>
+
+        </div>
+
+        <div class="answer">
+            <div ng-repeat="data in dataArray.result">
+                <div class="answer-cell" ng-click="openAnswerDetailModal(data.id, dataArray.resultQuestion.question)">
+
+                    <div class="avatar">
+                        <img src="{{data.head_img}}" alt="">
+                    </div>
+
+                    <div class="vote">
+                        {{data.agree}}
+                    </div>
+
+                    <div class="text">
+                        <div class="username">
+                            {{data.nickname}}
+                        </div>
+                        <div class="motto">
+                            {{data.sign}}
+                        </div>
+                    </div>
+
+                    <div class="answer-general">
+                        {{data.content}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </ion-content>
+
+</ion-modal-view>

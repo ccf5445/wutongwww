@@ -1,0 +1,30 @@
+<ion-modal-view class="section-homepage-answer" ng-controller="sectionHomepageAnswerCtrl">
+
+    <ion-header-bar>
+        <button class="button button-clear" ng-click="closeAnswerModal()">close</button>
+        <h1 class="title">等我回答</h1>
+    </ion-header-bar>
+
+    <ion-content class="content">
+
+        <ion-list ng-repeat="data in dataArray">
+
+            <div class="answer-cell">
+                <div class="img">
+                    <img src="img/perry.png" alt="">
+                </div>
+                <div class="text">
+                    <div class="question">
+                        {{data.question}}
+                    </div>
+                    <div class="answer">
+                        {{data.describe}}
+                    </div>
+                </div>
+            </div>
+
+        </ion-list>
+
+    </ion-content>
+
+</ion-modal-view>
