@@ -1,5 +1,5 @@
-<!--圈子-关注-->
-<ion-view class="regard" ng-controller="circleRegardCtrl">
+<!--圈子-动态-->
+<ion-view class="campaign">
 
 
     <!--<ion-nav-buttons side="left">-->
@@ -13,7 +13,7 @@
     <!--</ion-nav-buttons>-->
 
 
-    <ion-content class="cell-top cell-bottom regard-content">
+    <ion-content class="cell-top cell-bottom campaign-content">
 
         <ion-refresher
                 pulling-text="下拉刷新"
@@ -22,47 +22,44 @@
 
         <ion-list>
 
+
             <div class="not-sign" ng-if="unSign">
                 还没有登录哟~
-            </div>
-
-            <div class="no-watch" ng-if="unWatch">
-                没有关注的问题哟~
             </div>
 
             <div class="no-data" ng-if="noData">
                 没有数据哟~
             </div>
 
+            <div class="no-watch" ng-if="unWatch">
+                没有关注的用户哟~
+            </div>
+
             <div ng-repeat="data in dataArray">
-                <div class="regard-list-cell" ng-click="openQuestionModal(data.id)">
+                <div class="campaign-list-cell" ng-click="openQuestionModal(data.id)">
                     <div class="avatar">
-                        <img src="{{data.fimg}}" alt="">
-                    </div>
-                    <div class="answer-num">
-                        <i class="fa fa-comment-o" aria-hidden="true"></i>
-                        10
-                    </div>
-                    <div class="question">
-                        {{data.question}}
-                    </div>
-                    <div class="best-answer">
-                        <div class="user-info">
-                            <span class="username">{{data.hname}}</span>
-                            <span class="motto"> - 少壮不努力老大徒伤悲</span>
-                            <div class="avatar">
-                                <img src="{{data.himg}}" alt="">
-                            </div>
+                        <div class="img">
+                            <img src="{{data.head_img}}" alt="">
                         </div>
-                        <div class="answer-text">
+                        <div class="info">
+                            <span class="username">{{data.nickname}}</span>
+                            <span class="action">{{data.flag}}</span>
+                        </div>
+                    </div>
+                    <!--<div class="quiz-action">-->
+                        <!--子头部，需要在ion-content加入bar-subheader 在头部加上has-subheader不然顶部会被遮挡。-->
+                    <!--</div>-->
+                    <div class="answer-action">
+                        <div class="question">
+                            {{data.question}}
+                        </div>
+                        <div class="answer">
                             {{data.content}}
                         </div>
                     </div>
                 </div>
             </div>
         </ion-list>
-
-
 
         <ion-infinite-scroll
                 ng-if="moreDataCanBeLoaded()"
